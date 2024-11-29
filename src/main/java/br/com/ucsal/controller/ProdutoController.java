@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.ucsal.controller.operations.Command;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 
 @WebServlet("/view/*")  // Mapeia todas as requisições com "/view/*"
 public class ProdutoController extends HttpServlet {

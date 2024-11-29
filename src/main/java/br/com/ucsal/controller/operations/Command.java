@@ -1,4 +1,4 @@
-package br.com.ucsal.controller;
+package br.com.ucsal.controller.operations;
 
 import java.io.IOException;
 

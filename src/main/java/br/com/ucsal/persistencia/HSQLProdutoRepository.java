@@ -8,9 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ucsal.controller.operations.Singleton;
 import br.com.ucsal.model.Produto;
 import br.com.ucsal.util.DatabaseUtil;
 
+@Singleton
 public class HSQLProdutoRepository implements ProdutoRepository<Produto, Integer>{
 
     @Override

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import br.com.ucsal.controller.operations.Command;
+import br.com.ucsal.controller.operations.Rota;
+import br.com.ucsal.controller.managers.InjectManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,14 +22,18 @@ public class ProdutoController extends HttpServlet {
 	
     @Override
     public void init() {
-        // Mapeia os comandos
-        commands.put("/editarProduto", new ProdutoEditarServlet());
-        commands.put("/adicionarProduto", new ProdutoAdicionarServlet());
-        commands.put("/excluirProduto", new ProdutoExcluirServlet());
-        commands.put("/listarProdutos", new ProdutoListarServlet());
-        commands.put("/", new ProdutoListarServlet()); // Roteia também a raiz da aplicação para listar produtos
-        // Adicione outros comandos conforme necessário
+        mapAndInject("/editarProduto", new ProdutoEditarServlet());
+        mapAndInject("/adicionarProduto", new ProdutoAdicionarServlet());
+        mapAndInject("/excluirProduto", new ProdutoExcluirServlet());
+        mapAndInject("/listarProdutos", new ProdutoListarServlet());
+        mapAndInject("/", new ProdutoListarServlet()); // Routes the application root to list products
     }
+
+    private void mapAndInject(String path, Command command) {
+        InjectManager.injectDependencies(command); // Injeta dependências no command
+        commands.put(path, command); // Adiciona o comando ao mapa de rotas
+    }
+
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

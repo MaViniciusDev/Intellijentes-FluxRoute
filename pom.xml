@@ -17,6 +17,9 @@
 
 	<dependencies>
 
+
+
+
 		<!-- Dependência atualizada para JSTL 3.0.2 -->
 		<dependency>
 			<groupId>jakarta.servlet.jsp.jstl</groupId>

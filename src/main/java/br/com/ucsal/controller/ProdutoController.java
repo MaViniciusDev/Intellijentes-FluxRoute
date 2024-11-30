@@ -26,7 +26,6 @@ public class ProdutoController extends HttpServlet {
         mapAndInject("/adicionarProduto", new ProdutoAdicionarServlet());
         mapAndInject("/excluirProduto", new ProdutoExcluirServlet());
         mapAndInject("/listarProdutos", new ProdutoListarServlet());
-        mapAndInject("/", new ProdutoListarServlet()); // Routes the application root to list products
     }
 
     private void mapAndInject(String path, Command command) {

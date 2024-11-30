@@ -13,12 +13,12 @@ public class PersistenciaFactory {
 		ProdutoRepository<?, ?> produtoRepository;
 
 		switch (type) {
-		case 0: {
+			case MEMORIA: {
 			produtoRepository = SingletonManager.getInstance(MemoriaProdutoRepository.class);
 			break;
 		}
-		case 1: {
-			produtoRepository = SingletonManager.getInstance(HSQLProdutoRepository.class);
+			case HSQL: {
+			produtoRepository = new HSQLProdutoRepository();
 			break;
 		}
 		default:

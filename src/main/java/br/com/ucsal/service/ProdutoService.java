@@ -2,7 +2,7 @@ package br.com.ucsal.service;
 
 import java.util.List;
 
-import br.com.ucsal.controller.operations.ImplementedBy;
+import br.com.ucsal.controller.operations.ImplementationOf;
 import br.com.ucsal.controller.operations.Inject;
 import br.com.ucsal.model.Produto;
 import br.com.ucsal.persistencia.MemoriaProdutoRepository;
@@ -11,7 +11,7 @@ import br.com.ucsal.persistencia.ProdutoRepository;
 public class ProdutoService {
 
 @Inject
-@ImplementedBy(MemoriaProdutoRepository.class)
+@ImplementationOf(MemoriaProdutoRepository.class)
 
  private ProdutoRepository<Produto, Integer> produtoRepository;
 

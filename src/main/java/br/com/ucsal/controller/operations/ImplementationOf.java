@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE, ElementType.FIELD}) // Applies to classes or interfaces
 @Retention(RetentionPolicy.RUNTIME) // Available at runtime
-public @interface ImplementedBy {
+public @interface ImplementationOf {
     Class<?> value(); // Specifies the implementation class
 }

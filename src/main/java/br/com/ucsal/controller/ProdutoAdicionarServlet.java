@@ -5,6 +5,7 @@ package br.com.ucsal.controller;
 import java.io.IOException;
 
 import br.com.ucsal.controller.operations.Command;
+import br.com.ucsal.controller.operations.Inject;
 import br.com.ucsal.controller.operations.Rota;
 import br.com.ucsal.persistencia.HSQLProdutoRepository;
 import br.com.ucsal.service.ProdutoService;
@@ -17,13 +18,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @Rota(path = "/adicionarProduto")
 public class ProdutoAdicionarServlet implements Command {
  private static final long serialVersionUID = 1L;
- 
+
+ @Inject
  private ProdutoService produtoService;
 
- public ProdutoAdicionarServlet() {
-     // Inicializa o serviço com o repositório
-     this.produtoService = new ProdutoService(new HSQLProdutoRepository());
- }
+
 
  @Override
  public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

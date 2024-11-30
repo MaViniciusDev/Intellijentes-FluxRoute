@@ -15,14 +15,14 @@ import java.io.File;
 import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @WebListener
 public class InicializadorListener implements ServletContextListener {
 
-    // Usar ConcurrentHashMap para garantir thread-safety
-    private final Map<String, Command> commands = new ConcurrentHashMap<>();
+    private Map<String, Command> commands = new HashMap<>();
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -41,6 +41,10 @@ public class InicializadorListener implements ServletContextListener {
                 }
             }
 
+            // Registra os comandos no ServletContext
+            context.setAttribute("commands", commands);
+            System.out.println("Mapa de comandos registrado com sucesso!");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,35 +59,29 @@ public class InicializadorListener implements ServletContextListener {
                     processDirectory(file, context);
                 } else if (file.getName().endsWith(".class")) {
                     try {
-                        String className = file.getPath()
+                        String classVariable = file.getPath()
                                 .replace(File.separator, ".")
-                                .replaceFirst(".*?.classes.", "")
+                                .replaceFirst(".*?classes.", "") // Ajuste conforme sua estrutura
                                 .replace(".class", "");
-                        System.out.println(className);
 
-                        Class<?> clazz = Class.forName(className, false, context.getClassLoader());
-                        System.out.println(clazz.isAnnotationPresent(Inject.class));
+                        System.out.println("Processando classe: " + classVariable);
 
-                        // **Nova Verificação para Anotações**
+                        Class<?> clazz = Class.forName(classVariable, false, context.getClassLoader());
+
                         if (clazz.isInterface() || Modifier.isAbstract(clazz.getModifiers())) {
                             continue;
                         }
 
-                        // Processamento existente...
                         if (clazz.isAnnotationPresent(Singleton.class)) {
                             SingletonManager.getInstance(clazz);
-                            System.out.println("Classe anotada com @Singleton inicializada: " + className);
+                            System.out.println("Classe anotada com @Singleton inicializada: " + classVariable);
                         }
 
                         if (clazz.isAnnotationPresent(Rota.class)) {
                             Rota rota = clazz.getAnnotation(Rota.class);
-                            Command servlet = (Command) clazz.getDeclaredConstructor().newInstance();
-
-                            // Registrar a rota no mapa de comandos thread-safe
-                            commands.put(rota.path(), servlet);
-                            // Realizar a injeção de dependências na instância da rota
-                            InjectManager.injectDependencies(servlet);
-
+                            Command command = (Command) clazz.getDeclaredConstructor().newInstance();
+                            commands.put(rota.path(), command);
+                            InjectManager.injectDependencies(command);
                             System.out.println("Rota registrada: " + rota.path());
                         }
 
@@ -93,11 +91,13 @@ public class InicializadorListener implements ServletContextListener {
                     }
                 }
             }
-
-            // Tornar o mapa de comandos acessível ao contexto do servlet
-            context.setAttribute("command", commands);
         } else {
             System.err.println("Diretório inválido ou vazio: " + directory.getAbsolutePath());
         }
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        System.out.println("Aplicação finalizada.");
     }
 }

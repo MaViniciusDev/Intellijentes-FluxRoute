@@ -2,14 +2,22 @@ package br.com.ucsal.service;
 
 import java.util.List;
 
+import br.com.ucsal.controller.operations.ImplementationOf;
+import br.com.ucsal.controller.operations.Inject;
 import br.com.ucsal.model.Produto;
+import br.com.ucsal.persistencia.HSQLProdutoRepository;
+import br.com.ucsal.persistencia.MemoriaProdutoRepository;
 import br.com.ucsal.persistencia.ProdutoRepository;
 
 public class ProdutoService {
+
+@Inject
+@ImplementationOf(HSQLProdutoRepository.class)
+
  private ProdutoRepository<Produto, Integer> produtoRepository;
 
- public ProdutoService(ProdutoRepository<Produto, Integer> produtoRepository) {
-     this.produtoRepository = produtoRepository;
+ public ProdutoService() {
+
  }
 
  public void adicionarProduto(String nome, double preco) {

@@ -13,8 +13,8 @@ import br.com.ucsal.model.Produto;
 @Singleton
 public class MemoriaProdutoRepository implements ProdutoRepository<Produto, Integer>{
 
-    private Map<Integer, Produto> produtos = new HashMap<>();
-    private AtomicInteger currentId = new AtomicInteger(1);
+    private final Map<Integer, Produto> produtos = new HashMap<>();
+    private final AtomicInteger currentId = new AtomicInteger(1);
 
     private static MemoriaProdutoRepository instancia;
     

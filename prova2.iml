@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
   <component name="FacetManager">
+    <facet type="web" name="Web3">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
     <facet type="web" name="Web2">
       <configuration>
         <descriptors>
@@ -8,6 +22,30 @@
         </descriptors>
         <webroots>
           <root url="file://$MODULE_DIR$/.smarttomcat/prova2/conf" relative="/WEB-INF" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web5">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/Servers/Tomcat v10.1 Server at localhost-config/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/Servers/Tomcat v10.1 Server at localhost-config" relative="/WEB-INF" />
+        </webroots>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web4">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/conf/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/conf" relative="/WEB-INF" />
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />

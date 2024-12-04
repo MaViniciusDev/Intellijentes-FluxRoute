@@ -20,7 +20,7 @@ import java.util.Map;
 @WebListener
 public class InicializadorListener implements ServletContextListener {
 
-    private Map<String, Command> commands = new HashMap<>();
+    private final Map<String, Command> commands = new HashMap<>();
 
 
     @Override

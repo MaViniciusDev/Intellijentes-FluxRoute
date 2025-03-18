@@ -12,7 +12,7 @@ import br.com.ucsal.persistencia.ProdutoRepository;
 public class ProdutoService {
 
 @Inject
-@ImplementationOf(HSQLProdutoRepository.class)
+@ImplementationOf(MemoriaProdutoRepository.class)
 
  private ProdutoRepository<Produto, Integer> produtoRepository;
 
